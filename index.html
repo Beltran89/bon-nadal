@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bon Nada 🎄</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="snow-container"></div>
+
+<audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/12/06/audio_8c38dfc4d3.mp3" type="audio/mpeg">
+</audio>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <p>
+            Sé que te gustaron mucho las zapatillas de la camarera,
+            no he sido capaz de encontrarlas pero me gustaría que pudieras elegir la que más te gustaran,
+            porque lo más bonito, para la más bonita ❤️
+        </p>
+        <button onclick="cerrarPopup()">Aceptar</button>
+    </div>
+</div>
+<div class="contenido">
+    <h1>🎄 Bon Nadal 🎄</h1>
+    <p class="mensaje">
+        Porque cada paso que des, quiero que sea tan bonito como tú y sea junto a mí 💕
+    </p>
+
+    <a href="https://www.skechers.es" target="_blank" class="zapatilla" onclick="vibrar()">
+        <img src="zapatilla3.JPEG" alt="Zapatilla Skechers">
+        <span>✨ Cíclame ✨</span>
+    </a>
+</div>
+
+<script>
+document.body.addEventListener("click", () => {
+    document.getElementById("musica").play();
+}, { once: true });
+
+function vibrar() {
+    if (navigator.vibrate) {
+        navigator.vibrate(80);
+    }
+}
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("contenido").classList.remove("oculto");
+    document.getElementById("musica").play();
+}
+
+const snowContainer = document.getElementById("snow-container");
+
+function createSnowflake() {
+    const snowflake = document.createElement("div");
+    snowflake.classList.add("snowflake");
+    snowflake.innerHTML = "❄";
+
+    snowflake.style.left = Math.random() * 100 + "vw";
+    snowflake.style.fontSize = Math.random() * 14 + 10 + "px";
+    snowflake.style.animationDuration = Math.random() * 6 + 6 + "s";
+    snowflake.style.opacity = Math.random();
+
+    snowContainer.appendChild(snowflake);
+
+    setTimeout(() => snowflake.remove(), 12000);
+}
+
+setInterval(createSnowflake, 180);
+</script>
+
+</body>
+</html>
